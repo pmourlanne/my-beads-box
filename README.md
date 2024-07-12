@@ -12,16 +12,20 @@ See this [document](https://docs.google.com/document/d/1-S2WosY3p9mXEp-HihGk2FQk
 
 I'll be showing off here what I would do if I had one or two weeks' time to work on this :)
 
-### [High level architecture](https://excalidraw.com/#json=UsHdLiYZ3lH4KWX6hMJbd,Jn3s-jOezOMJCpaNkpFQkw)
+### High level architecture
+
+[See on Excalidraw](https://excalidraw.com/#json=UsHdLiYZ3lH4KWX6hMJbd,Jn3s-jOezOMJCpaNkpFQkw)
 
 Some notes:
 - "VPC" stands for [Virtual Private Cloud](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html). This is a nifty tool that allows us to have AWS resouces isolated from one another
-- The Application Load Balancer holds the SSL certificate: all the traffic pass the ALB is unencrypted
+- The Application Load Balancer holds the SSL certificate: all the traffic after the ALB is unencrypted
 - Bastions allow us to reduce the attack surface from the outside
 - The "Engineering" bastion is used by engineers to be able to SSH onto machines (web servers and databases)
 - The "OPS" bastion is intended for non tech people to be able to access a database replica (in read-only). This is usually helpful to BizDev / Finance / CSM / Data Science people
 
-### [Application Web server](https://excalidraw.com/#json=D9wcDllXdytkF_JQKfmMN,Cz9kCbw5z46fjWA5d0qZUQ)
+### Application Web server
+
+[See on Excalidraw](https://excalidraw.com/#json=D9wcDllXdytkF_JQKfmMN,Cz9kCbw5z46fjWA5d0qZUQ)
 
 This is pretty standard :o  
 Celery is used for asynchronous task (eg. sending emails), and RabbitMQ is the broker for Celery.  
