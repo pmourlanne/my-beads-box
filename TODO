@@ -1,6 +1,10 @@
-Models
-Views
+Views for vouchers
 Tests
 Pre-commit
 CI
 Proper dependencies management
+django-simple-history
+Pagination
+Auth
+Better handle statics
+Ordering of objects in lists

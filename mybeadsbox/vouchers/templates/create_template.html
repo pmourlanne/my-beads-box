@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-5">
+  <div class="mb-3">
+    <h1>
+      Create a Voucher Template
+    </h1>
+  </div>
+  <hr />
+</div>
+
+<div class="container mt-3">
+  <form action="{% url 'create-template' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" value="Create"></p>
+  </form>
+</div>
+{% endblock %}

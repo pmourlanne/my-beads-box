@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-5">
+  <div class="mb-3">
+    <h1>
+      Manage your Voucher Templates
+    </h1>
+  </div>
+  <hr />
+</div>
+
+<div class="container mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for template in templates %}
+      <tr>
+        <td><a href="{% url 'edit-template' template.id %}">{{ template.title }}</a></td>
+        <td>{{ template.description }}</td>
+        <td>{{ template.get_price_display }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'create-template' %}">Create a new template</a>
+</div>
+{% endblock %}

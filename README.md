@@ -66,9 +66,20 @@ postgres=# grant all privileges on database mybeadsbox to mybeadsbox;
 GRANT
 ```
 
+Run the migrations:
+```shell
+$ cd mybeadsbox
+$ python manage.py migrate
+```
+
 ### Running the server locally
 
-TODO
+```shell
+$ cd mybeadsbox
+$ python manage.py runserver
+```
+
+Access the local server on `localhost:8000`
 
 ### Running the tests
 
