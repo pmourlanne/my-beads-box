@@ -79,7 +79,7 @@ $ cd mybeadsbox
 $ python manage.py runserver
 ```
 
-Access the local server on `localhost:8000`
+Access the local server on `localhost:8000/vouchers/`
 
 ### Running the tests
 

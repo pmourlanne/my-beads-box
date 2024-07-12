@@ -1,4 +1,3 @@
-Views for vouchers
 Tests
 Pre-commit
 CI
@@ -8,3 +7,4 @@ Pagination
 Auth
 Better handle statics
 Ordering of objects in lists
+Make the website look somewhat professional

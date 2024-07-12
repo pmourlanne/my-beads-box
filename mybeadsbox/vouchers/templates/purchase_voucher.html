@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-5">
+  <div class="mb-3">
+    <h1>
+      You're almost there...
+    </h1>
+  </div>
+  <hr />
+</div>
+
+<div class="container mt-3">
+  <p>
+    We need some final information before you can finally get your hands on your voucher
+  </p>
+
+  <form action="{% url 'purchase-voucher' %}?template_id={{ template.id }}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><input type="submit" value="Buy"></p>
+  </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container mt-5">
+  <div class="mb-3">
+    <h1>
+      Manage your Vouchers
+    </h1>
+  </div>
+  <hr />
+</div>
+
+<div class="container mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Template title</th>
+        <th>Template price</th>
+        <th>Buyer</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for voucher in vouchers %}
+      <tr>
+        <td>{{ voucher.template.title }}</td>
+        <td>{{ voucher.template.get_price_display }}</td>
+        <td>{{ voucher.buyer }}</td>
+        <td>{{ voucher.get_status_display }}</td>
+        <td>
+          {% if voucher.status == "purchased" %}
+            <form action="{% url 'admin-update-voucher-status' voucher.id %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="status" value="used">
+              <button type="submit" class="btn btn-success">Mark as used</button>
+            </form>
+            <form action="{% url 'admin-update-voucher-status' voucher.id %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="status" value="expired">
+              <button type="submit" class="btn btn-warning">Mark as expired</button>
+            </form>
+            <form action="{% url 'admin-update-voucher-status' voucher.id %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="status" value="cancelled">
+              <button type="submit" class="btn btn-danger">Mark as cancelled</button>
+            </form>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

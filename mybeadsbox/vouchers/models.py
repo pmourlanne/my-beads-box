@@ -18,6 +18,13 @@ STATUSES = (
     ("expired", "Expired"),
 )
 
+STATUS_TRANSITIONS = {
+    "purchased": ("cancelled", "used", "expired"),
+    "cancelled": (),
+    "used": (),
+    "expired": (),
+}
+
 
 class VoucherTemplate(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -42,3 +49,6 @@ class Voucher(models.Model):
     status = models.CharField(max_length=None, choices=STATUSES)
 
     # TODO: metadata (created, modified?)
+
+    def is_new_status_valid(self, new_status):
+        return new_status in STATUS_TRANSITIONS[self.status]
