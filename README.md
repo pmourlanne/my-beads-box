@@ -83,4 +83,7 @@ Access the local server on `localhost:8000/vouchers/`
 
 ### Running the tests
 
-TODO
+```shell
+$ cd mybeadsbox
+$ pytest
+```
