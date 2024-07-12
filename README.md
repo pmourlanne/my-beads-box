@@ -47,12 +47,29 @@ Here are two of my personal projects I *have* deployed in production:
 
 ### Installation
 
+In a Python 3.12 virtualenv, run:
+```shell
+$ pip install -r requirements.txt
+```
+
+Create the database and the user in PG:
+```shell
+$ sudo -u postgres psql
+
+postgres=# create database mybeadsbox;
+CREATE DATABASE
+
+postgres=# create user mybeadsbox with encrypted password 'test';
+CREATE ROLE
+
+postgres=# grant all privileges on database mybeadsbox to mybeadsbox;
+GRANT
+```
+
+### Running the server locally
+
 TODO
 
 ### Running the tests
-
-TODO
-
-### Running the server locally
 
 TODO

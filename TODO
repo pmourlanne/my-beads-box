@@ -1,6 +1,6 @@
-Virtualenv
 Models
 Views
 Tests
 Pre-commit
 CI
+Proper dependencies management
