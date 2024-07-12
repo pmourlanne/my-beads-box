@@ -2,6 +2,7 @@
 
 from django.db import migrations
 
+
 def create_initial_voucher_templates(apps, schema_editor):
     VoucherTemplate = apps.get_model("vouchers", "VoucherTemplate")
 
@@ -26,7 +27,7 @@ def reverse_func(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('vouchers', '0001_create_voucher_models'),
+        ("vouchers", "0001_create_voucher_models"),
     ]
 
     operations = [

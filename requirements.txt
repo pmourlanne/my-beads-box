@@ -2,3 +2,4 @@ Django==4.2
 psycopg
 django-extensions
 pytest-django
+pre-commit==3.7.1

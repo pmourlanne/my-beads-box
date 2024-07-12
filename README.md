@@ -2,6 +2,8 @@
 
 [![We'll see who brings in more honey](https://i.imgur.com/wMkCR56.jpeg "How hard can it be...zzz?")](https://www.youtube.com/watch?v=5J2kc4oZTVU)
 
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/pmourlanne/my-beads-box/main.svg)](https://results.pre-commit.ci/latest/github/pmourlanne/my-beads-box/main)
+
 ## Instructions
 
 See this [document](https://docs.google.com/document/d/1-S2WosY3p9mXEp-HihGk2FQkTUGbbej8hQm16LtJirQ/edit)
@@ -70,6 +72,11 @@ Run the migrations:
 ```shell
 $ cd mybeadsbox
 $ python manage.py migrate
+```
+
+Install the pre-commit hooks:
+```shell
+$ pre-commit install
 ```
 
 ### Running the server locally

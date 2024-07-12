@@ -45,7 +45,9 @@ class Voucher(models.Model):
 
     # TODO: What if the template changes? -> Denormalize / django-simple-history
     template = models.ForeignKey(VoucherTemplate, on_delete=models.CASCADE)
-    buyer = models.CharField(max_length=100)  # In reality will probably be a FK to a User
+    buyer = models.CharField(
+        max_length=100
+    )  # In reality will probably be a FK to a User
     status = models.CharField(max_length=None, choices=STATUSES)
 
     # TODO: metadata (created, modified?)

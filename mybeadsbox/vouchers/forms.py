@@ -2,6 +2,7 @@ from django.forms import ModelForm
 
 from vouchers.models import VoucherTemplate, Voucher
 
+
 class VoucherTemplateForm(ModelForm):
     class Meta:
         model = VoucherTemplate
@@ -11,4 +12,4 @@ class VoucherTemplateForm(ModelForm):
 class VoucherPurchaseForm(ModelForm):
     class Meta:
         model = Voucher
-        fields = ("buyer", )
+        fields = ("buyer",)
