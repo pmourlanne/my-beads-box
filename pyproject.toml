@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "mybeadsbox"
+version = "0.1.0"
+description = ""
+authors = ["Pierre Mourlanne <pmourlanne@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "~3.12"
+django = ">=4.2,<5.0"
+psycopg = "^3.2.1"
+django-extensions = "^3.2.3"
+
+[tool.poetry.group.linting]
+optional = true
+
+[tool.poetry.group.linting.dependencies]
+pre-commit = "3.7.1"
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+pytest-django = "4.8.0"

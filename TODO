@@ -1,5 +1,4 @@
 Test views
-Proper dependencies management
 django-simple-history
 Pagination
 Auth

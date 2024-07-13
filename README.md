@@ -55,7 +55,7 @@ Here are two of my personal projects I *have* deployed in production:
 
 In a Python 3.12 virtualenv, run:
 ```shell
-$ pip install -r requirements.txt
+$ poetry install
 ```
 
 Create the database and the user in PG:
@@ -80,6 +80,7 @@ $ python manage.py migrate
 
 Install the pre-commit hooks:
 ```shell
+$ poetry install --with=linting
 $ pre-commit install
 ```
 
@@ -95,6 +96,7 @@ Access the local server on `localhost:8000/vouchers/`
 ### Running the tests
 
 ```shell
+$ poetry install --with=test
 $ cd mybeadsbox
 $ pytest
 ```
