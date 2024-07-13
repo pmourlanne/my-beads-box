@@ -1,6 +1,6 @@
 import pytest
 
-from vouchers.models import Voucher
+from vouchers.operations import _is_voucher_status_transition_valid
 
 
 @pytest.mark.parametrize(
@@ -11,8 +11,8 @@ from vouchers.models import Voucher
         ("purchased", "used", True),
         ("purchased", "expired", True),
         ("used", "expired", False),
+        ("cancelled", "refunded", True),
     ],
 )
 def test_is_voucher_status_transition_valid(status, new_status, authorized):
-    voucher = Voucher(status=status)
-    assert voucher.is_new_status_valid(new_status) is authorized
+    assert _is_voucher_status_transition_valid(status, new_status) is authorized

@@ -14,8 +14,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Template title</th>
-        <th>Template price</th>
+        <th>Title</th>
+        <th>Price</th>
         <th>Buyer</th>
         <th>Status</th>
         <th>Actions</th>
@@ -25,11 +25,12 @@
     <tbody>
       {% for voucher in vouchers %}
       <tr>
-        <td>{{ voucher.template.title }}</td>
-        <td>{{ voucher.template.get_price_display }}</td>
+        <td>{{ voucher.title }}</td>
+        <td>{{ voucher.get_price_display }}</td>
         <td>{{ voucher.buyer }}</td>
         <td>{{ voucher.get_status_display }}</td>
         <td>
+          {# I don't like that this logic is in the template #}
           {% if voucher.status == "purchased" %}
             <form action="{% url 'admin-update-voucher-status' voucher.id %}" method="POST">
               {% csrf_token %}
@@ -45,6 +46,12 @@
               {% csrf_token %}
               <input type="hidden" name="status" value="cancelled">
               <button type="submit" class="btn btn-danger">Mark as cancelled</button>
+            </form>
+          {% elif voucher.status == "cancelled" %}
+            <form action="{% url 'admin-update-voucher-status' voucher.id %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="status" value="refunded">
+              <button type="submit" class="btn btn-warning">Mark as refunded</button>
             </form>
           {% endif %}
         </td>

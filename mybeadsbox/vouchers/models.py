@@ -14,6 +14,7 @@ CURRENCIES = (
 STATUSES = (
     ("purchased", "Purchased"),
     ("cancelled", "Cancelled"),
+    ("refunded", "Refunded"),
     ("used", "Used"),
     ("expired", "Expired"),
 )
@@ -43,8 +44,16 @@ class VoucherTemplate(models.Model):
 class Voucher(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-    # TODO: What if the template changes? -> Denormalize / django-simple-history
-    template = models.ForeignKey(VoucherTemplate, on_delete=models.CASCADE)
+    # This is here for ease of use, but shouldn't be relied upon
+    template = models.ForeignKey(
+        VoucherTemplate, blank=True, null=True, on_delete=models.SET_NULL
+    )
+    # We denormalize the data from the template at voucher creation
+    title = models.CharField(max_length=300)
+    description = models.TextField()
+    price = models.IntegerField(help_text="In minor units")  # In minor units
+    currency = models.CharField(max_length=None, choices=CURRENCIES)
+
     buyer = models.CharField(
         max_length=100
     )  # In reality will probably be a FK to a User
@@ -52,5 +61,5 @@ class Voucher(models.Model):
 
     # TODO: metadata (created, modified?)
 
-    def is_new_status_valid(self, new_status):
-        return new_status in STATUS_TRANSITIONS[self.status]
+    def get_price_display(self):
+        return get_price_display(self.price, self.currency)

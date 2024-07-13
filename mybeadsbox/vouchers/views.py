@@ -3,6 +3,11 @@ from django.shortcuts import redirect, render, get_object_or_404
 
 from vouchers.forms import VoucherTemplateForm, VoucherPurchaseForm
 from vouchers.models import VoucherTemplate, Voucher
+from vouchers.operations import (
+    create_voucher,
+    update_voucher_status,
+    UnexpectedVoucherStatusChange,
+)
 
 
 def list_templates(request):
@@ -51,9 +56,7 @@ def purchase_voucher(request):
         form = VoucherPurchaseForm(request.POST)
         if form.is_valid():
             # TODO: Stripe
-            Voucher.objects.create(
-                template=template, status="purchased", **form.cleaned_data
-            )
+            create_voucher(template=template, buyer=form.cleaned_data["buyer"])
             return redirect("list-vouchers")
 
     else:
@@ -78,9 +81,12 @@ def admin_update_voucher_status(request, voucher_id):
     if request.method == "POST":
         form = modelform_factory(Voucher, fields=("status",))(request.POST)
         if form.is_valid():
-            status = form.cleaned_data.get("status")
-            if voucher.is_new_status_valid(status):
-                voucher.status = status
-                voucher.save()
+            try:
+                update_voucher_status(
+                    voucher=voucher, status=form.cleaned_data.get("status")
+                )
+            except UnexpectedVoucherStatusChange:
+                # Probably want to log something :clown:
+                pass
 
     return redirect("admin-list-vouchers")
