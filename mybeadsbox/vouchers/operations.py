@@ -1,6 +1,5 @@
 from vouchers.models import Voucher
 
-
 VOUCHER_STATUS_TRANSITIONS = {
     "purchased": ("cancelled", "used", "expired"),
     "cancelled": ("refunded",),
