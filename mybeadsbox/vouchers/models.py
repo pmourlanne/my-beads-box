@@ -4,7 +4,6 @@ from django.db import models
 
 from vouchers.utils import get_price_display
 
-
 CURRENCIES = (
     ("EUR", "€"),
     ("USD", "$"),
